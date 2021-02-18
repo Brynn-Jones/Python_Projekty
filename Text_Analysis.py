@@ -66,10 +66,13 @@ if isOk == True:
     chosen_text = texts[n_choice]
     words = chosen_text.split()
 
+    # odstraníme znaky .,!:? ze začátků a konců slov
+    # pokud se slovo skládá pouze z těchto znaků, výsledkem je slovo s nulovou délkou
+    # POZOR, zbývající kód musí s nulovými délkami počítat
     clean_words = []
     for word in words:
         clean_words.append(word.strip('.,!:?'))
-    print(f'Number of words: {len(clean_words)}')  # počet očištěných slov (zahrnuje i případná slova s nulovou délkou)
+    print(f'Number of words: {len(clean_words)}')
 
     title_words = []
     for word in clean_words:
@@ -111,6 +114,3 @@ if isOk == True:
     for item in sorted(lengths):
         print(f'{item}'.rjust(3), '|', (lengths[item] * '*').ljust(20), '|', f'{lengths[item]}', sep='')
     print(40 * '-')
-
-if isOk == False:
-    exit()
